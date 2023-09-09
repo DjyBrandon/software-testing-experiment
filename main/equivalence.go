@@ -43,20 +43,25 @@ func equTriangle(colCel string) string {
 	b, _ = strconv.Atoi(strArr[1])
 	c, _ = strconv.Atoi(strArr[2])
 
-	if (a < b+c) && (b < a+c) && (c < a+b) {
-		if a == b && b == c {
-			result := "Equilateral"
-			return result
-		} else if a != b && a != c && b != c {
-			result := "Scalene"
-			return result
-		} else {
-			result := "Isosceles"
-			return result
-		}
-	} else {
+	if a <= 0 || a >= 200 || b <= 0 || b >= 200 || c <= 0 || c >= 200 {
 		result := "Not a Triangle"
 		return result
+	} else {
+		if (a < b+c) && (b < a+c) && (c < a+b) {
+			if a == b && b == c {
+				result := "Equilateral"
+				return result
+			} else if a != b && a != c && b != c {
+				result := "Scalene"
+				return result
+			} else {
+				result := "Isosceles"
+				return result
+			}
+		} else {
+			result := "Not a Triangle"
+			return result
+		}
 	}
 
 	return result
