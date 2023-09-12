@@ -8,10 +8,10 @@ import (
 )
 
 func main() {
-	equList("./data/equivalence-partitioning.xlsx")
+	EquList("./data/equivalence-partitioning.xlsx")
 }
 
-func equList(excelPath string) []string {
+func EquList(excelPath string) []string {
 
 	xlsx, err := excelize.OpenFile(excelPath)
 	if err != nil {
@@ -21,7 +21,7 @@ func equList(excelPath string) []string {
 	rows, _ := xlsx.GetRows(sheetName)
 	out := make([]string, 0)
 	for _, row := range rows {
-		var result = equTriangle(row[0])
+		var result = EquTriangle(row[0])
 		if row[1] == result {
 			fmt.Println(row[0] + "  " + row[1] + "  ✅")
 		} else {
@@ -33,10 +33,9 @@ func equList(excelPath string) []string {
 
 }
 
-func equTriangle(colCel string) string {
+func EquTriangle(colCel string) string {
 
 	var a, b, c int
-	var result string
 
 	strArr := strings.Split(colCel, ",")
 	a, _ = strconv.Atoi(strArr[0])
@@ -63,6 +62,4 @@ func equTriangle(colCel string) string {
 			return result
 		}
 	}
-
-	return result
 }

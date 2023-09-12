@@ -8,10 +8,10 @@ import (
 )
 
 func main() {
-	bouList("./data/boundary-value-analysis.xlsx")
+	BouList("./data/boundary-value-analysis.xlsx")
 }
 
-func bouList(excelPath string) []string {
+func BouList(excelPath string) []string {
 
 	xlsx, err := excelize.OpenFile(excelPath)
 	if err != nil {
@@ -21,7 +21,7 @@ func bouList(excelPath string) []string {
 	rows, _ := xlsx.GetRows(sheetName)
 	out := make([]string, 0)
 	for _, row := range rows {
-		var result = bouTriangle(row[0])
+		var result = BouTriangle(row[0])
 		if row[1] == result {
 			fmt.Println(row[0] + "  " + row[1] + "  ✅")
 		} else {
@@ -33,10 +33,9 @@ func bouList(excelPath string) []string {
 
 }
 
-func bouTriangle(colCel string) string {
+func BouTriangle(colCel string) string {
 
 	var a, b, c int
-	var result string
 
 	strArr := strings.Split(colCel, ",")
 	a, _ = strconv.Atoi(strArr[0])
@@ -63,6 +62,4 @@ func bouTriangle(colCel string) string {
 			return result
 		}
 	}
-
-	return result
 }

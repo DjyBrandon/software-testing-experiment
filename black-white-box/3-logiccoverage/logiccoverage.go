@@ -8,10 +8,10 @@ import (
 )
 
 func main() {
-	basList("./data/basis-path.xlsx")
+	LogList("./data/logic-coverage.xlsx")
 }
 
-func basList(excelPath string) []string {
+func LogList(excelPath string) []string {
 
 	xlsx, err := excelize.OpenFile(excelPath)
 	if err != nil {
@@ -21,7 +21,7 @@ func basList(excelPath string) []string {
 	rows, _ := xlsx.GetRows(sheetName)
 	out := make([]string, 0)
 	for _, row := range rows {
-		var result = basTriangle(row[0])
+		var result = LogTriangle(row[0])
 		if row[1] == result {
 			fmt.Println(row[0] + "  " + row[1] + "  ✅")
 		} else {
@@ -33,10 +33,9 @@ func basList(excelPath string) []string {
 
 }
 
-func basTriangle(colCel string) string {
+func LogTriangle(colCel string) string {
 
 	var a, b, c int
-	var result string
 
 	strArr := strings.Split(colCel, ",")
 	a, _ = strconv.Atoi(strArr[0])
@@ -63,6 +62,4 @@ func basTriangle(colCel string) string {
 			return result
 		}
 	}
-
-	return result
 }
